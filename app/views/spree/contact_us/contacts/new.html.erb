@@ -1,44 +1,74 @@
-<% content_for :head do -%>
-  <meta name="title" content="<%= Spree.t(:contact_us_title) %>">
-<% end -%>
-
-<% content_for :sidebar do
-   if "products" == @current_controller && @taxon %>
-    <%= render :partial => "spree/shared/filters" %>
-  <% elsif !(@taxonomies.nil?)%>
-    <%= render :partial => "spree/shared/taxonomies" %>
-  <% end
- end %>
 
 <%= render :partial => 'spree/shared/error_messages', :locals => { :target => @contact } %>
 
-<h1><%= Spree.t(:contact_us_title) %></h1>
 <%= form_for @contact, :url => contacts_path, :html => { :novalidate => '' } do |f| %>
-  <% if SpreeContactUs.require_name %>
-    <p>
-      <%= f.label Spree.t(:name) %>
-      <span class="required">*</span><br/>
-      <%= f.text_field :name, class: 'required form-control' %>
-    </p>
-  <% end %>
-  <p>
-    <%= f.label :email %>
-    <span class="required">*</span><br/>
-    <%= f.email_field :email, class: 'required form-control email' %>
-  </p>
-  <% if SpreeContactUs.require_subject %>
-    <p>
-      <%= f.label :subjek %>
-      <span class="required">*</span><br/>
-      <%= f.text_field :subject, class: 'required form-control' %>
-    </p>
-  <% end %>
-  <p>
-    <%= f.label Spree.t(:message) %>
-    <span class="required">*</span><br/>
-    <%= f.text_area :message, class: 'required form-control' %>
-  </p>
-  <p>
-    <%= f.submit Spree.t(:submit), :alt => Spree.t(:submit), :id => 'contact_us_contact_submit', :title => Spree.t(:submit) %>
-  </p>
+  <div class="container">
+  <div class="contact-wrap">
+  <div class="row">
+    <div class="title-content">
+      <h1>Kontak</h1>
+      <div class="separator"></div>
+    </div>
+    <div class="col-md-12">
+      <div class="col-md-6">
+        <div class="form-group fg-no-mt">
+          <%= f.text_field :name, class: 'required form-control', id: "fullname" %>
+          <span class="form-highlight"></span>
+          <span class="form-bar"></span>
+          <label class="desc-form" for="fullname">Nama</label>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group fg-no-mt">
+          <%= f.email_field :email, class: 'required form-control email', id: "email" %>
+          <span class="form-highlight"></span>
+          <span class="form-bar"></span>
+          <label class="desc-form" for="email">Email</label>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="form-group fg-no-mt">
+          <%= f.text_field :subject, class: 'required form-control', id: "subject"%>
+          <span class="form-highlight"></span>
+          <span class="form-bar"></span>
+          <label class="desc-form" for="subject">Judul Pesan</label>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="form-group">
+          <%= f.text_area :message, class: 'required form-control', row: '5' %>
+          <span class="form-highlight"></span>
+          <span class="form-bar"></span>
+          <label class="desc-form" for="message">Pesan</label>
+        </div>
+        <%= f.submit Spree.t(:submit), :alt => Spree.t(:submit), :id => 'contact_us_contact_submit', :title => Spree.t(:submit), class: "btn ripple-effect btn-info" %>
+      </div>
 <% end %>
+      <div class="col-md-6 separator-wrap">
+        <div class="row">
+          <div class="info-c-wrap">
+            <div class="col-xs-3">
+              <i class="la la-map-marker"></i>
+            </div>
+            <div class="col-xs-9">
+              <h1>Alamat</h1>
+              <p>5th Building,Setra Mas Residence,Cimahi,40525,West Java - Indonesia</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="info-c-wrap">
+          <div class="col-xs-3">
+            <i class="la la-phone-square"></i>
+          </div>
+          <div class="col-xs-9">
+            <h1>Telepon</h1>
+            <p>5th Building,Setra Mas Residence,Cimahi,40525,West Java - Indonesia</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
