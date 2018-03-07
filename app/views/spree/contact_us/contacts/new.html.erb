@@ -1,6 +1,8 @@
 
 <%= render :partial => 'spree/shared/error_messages', :locals => { :target => @contact } %>
 
+<% contact_information = Spree::ContactInformation.first %>
+
 <%= form_for @contact, :url => contacts_path, :html => { :novalidate => '' } do |f| %>
   <div class="container">
   <div class="contact-wrap">
@@ -52,7 +54,7 @@
             </div>
             <div class="col-xs-9">
               <h1>Alamat</h1>
-              <p>5th Building,Setra Mas Residence,Cimahi,40525,West Java - Indonesia</p>
+              <p><%= contact_information.address %></p>
             </div>
           </div>
         </div>
@@ -64,7 +66,7 @@
           </div>
           <div class="col-xs-9">
             <h1>Telepon</h1>
-            <p>5th Building,Setra Mas Residence,Cimahi,40525,West Java - Indonesia</p>
+            <p><%= contact_information.phone %></p>
           </div>
         </div>
       </div>
